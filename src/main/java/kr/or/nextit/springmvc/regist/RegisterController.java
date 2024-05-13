@@ -1,14 +1,24 @@
 package kr.or.nextit.springmvc.regist;
 
+import kr.or.nextit.springmvc.member.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/register/")
+@RequiredArgsConstructor
 public class RegisterController {
+    private final RegisterService service;
+//    public RegisterController(RegisterService service) {
+//        this.service = service;
+//    }
     @GetMapping("step1")
     public String step1(){
         return "register/step1";
@@ -28,6 +38,12 @@ public class RegisterController {
         System.out.println("패스워드: "+register.getPassword());
         System.out.println("패스워드확인: "+register.getConfirmPassword());
 
-        return "register/step2";
+        return "register/step3";
+    }
+    @GetMapping("list")
+    public String selectAll(Model model) {
+        List<Member> members = service.selectAll();
+        model.addAttribute("members", members);
+        return "register/list";
     }
 }

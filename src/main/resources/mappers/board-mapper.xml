@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.nextit.springmvc.board.BoardMapper">
+	<select id="getBoardListCount" parameterType="searchVO" resultType="int">
+		select
+			count(*) cnt
+		from
+			board a
+			inner join member b on a.writer = b.id
+		<where>
+			<if test="searchType == 'title'">
+				title like '%' || #{searchWord} || '%'
+			</if>
+			<if test="searchType == 'content'">
+				content like '%' || #{searchWord} || '%'
+			</if>
+			<if test="searchType == 'writer'">
+				b.name like '%' || #{searchWord} || '%'
+			</if>
+		</where>
+	</select>
+	<select id="getBoardList" parameterType="searchVO" resultType="boardVO">
+		select
+			*
+		from
+		(
+			select
+				rownum rnum,
+				c.*
+			from
+			(					
+				select
+					a.no,
+					b.name writer,
+					a.title,
+					a.create_date,
+					a.hits
+				from
+					board a
+					inner join member b on a.writer = b.id
+				<where>
+					<if test="searchType == 'title'">
+						title like '%' || #{searchWord} || '%'
+					</if>
+					<if test="searchType == 'content'">
+						content like '%' || #{searchWord} || '%'
+					</if>
+					<if test="searchType == 'writer'">
+						b.name like '%' || #{searchWord} || '%'
+					</if>
+				</where>
+				order by a.create_date desc
+			) c
+		)
+		where rnum between #{firstRecordIndex} + 1 and #{lastRecordIndex}
+
+	</select>
+	<select id="getBoard" parameterType="int" resultType="boardVO">
+		select
+			a.no,
+			b.name writer,
+			a.title,
+			a.content,
+			a.create_date,
+			a.modify_date,
+			a.hits
+		from
+			board a
+			inner join member b on a.writer = b.id
+		where
+ 			no = #{no}
+	</select>
+	<insert id="insertBoard" parameterType="boardVO">
+		insert into board
+			(writer, title, content)
+		values
+			(#{writer}, #{title}, #{content})
+	</insert>
+	<update id="updateBoard" parameterType="boardVO">
+		update
+			board
+		set
+			title = #{title},
+			content = #{content},
+			modify_date = sysdate
+		where
+			no = #{no}
+	</update>
+	<delete id="deleteBoard" parameterType="int">
+		delete from
+			board
+		where
+			no = #{no}
+	</delete>
+</mapper>

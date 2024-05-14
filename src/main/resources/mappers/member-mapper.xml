@@ -25,4 +25,22 @@
         where
             email=#{email}
     </select>
+    <select id="selectById" parameterType="string" resultType="member">
+        select
+            id,
+            email,
+            password,
+            name,
+            create_date
+        from
+            member
+        where
+            id=#{id}
+    </select>
+    <insert id="insert" parameterType="registerRequest">
+        insert into member
+            (id, name, password, email)
+        values
+            (#{id},#{name},#{password},#{email})
+    </insert>
 </mapper>

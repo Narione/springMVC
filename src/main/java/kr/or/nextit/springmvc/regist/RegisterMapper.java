@@ -9,4 +9,6 @@ import java.util.List;
 public interface RegisterMapper {
     List<Member> selectAll();
     Member selectByEmail(String email);
+    Member selectById(String id);
+    void insert(RegisterRequest request);
 }

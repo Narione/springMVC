@@ -10,12 +10,12 @@ public class BoardVO {
 	private String writer;
 	private String title;
 	private String content;
-	private LocalDate createDate;
-	private LocalDate modifyDate;
+//	private LocalDate createDate;
+//	private LocalDate modifyDate;
 	private int hits;
 
-	public void setCreateDate(String createDate) {
-		this.createDate = LocalDate.parse(createDate);
-	}
+//	public void setCreateDate(String createDate) {
+//		this.createDate = LocalDate.parse(createDate);
+//	}
 
 }

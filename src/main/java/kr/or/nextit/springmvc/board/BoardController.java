@@ -55,4 +55,11 @@ public class BoardController {
             return "board/update";
         }
     }
+
+    @GetMapping("view")
+    public String boardView(@RequestParam("no") int searchNo, Model model){
+        BoardVO vo = service.getBoard(searchNo);
+        model.addAttribute("board", vo);
+        return "board/view";
+    }
 }

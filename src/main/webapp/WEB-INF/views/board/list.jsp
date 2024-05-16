@@ -35,7 +35,7 @@
 		<td>${board.no }</td>
 		<td><a href="/board/view?no=${board.no}">${board.title }</a></td>
 		<td>${board.writer }</td>
-<%--		<td>${board.createDate }</td>--%>
+		<td>${board.createDate }</td>
 		<td>${board.hits }</td>
 	</tr>
 	</c:forEach>

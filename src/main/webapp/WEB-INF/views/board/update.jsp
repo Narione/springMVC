@@ -8,15 +8,15 @@
     <label>글번호:
         <input type="text" name="no" readonly value="${board.no }">
     </label>
-<%--    <label>작성자:--%>
-<%--        <input type="text" name="name" readonly value="${board.writer }">--%>
-<%--    </label>--%>
-<%--    <label>등록일자:--%>
-<%--        <input type="text" name="createDate" readonly value="${board.createDate }">--%>
-<%--    </label>--%>
-<%--    <label>수정일자:--%>
-<%--        <input type="text" name="modifyDate" readonly value="${board.modifyDate }">--%>
-<%--    </label>--%>
+    <label>작성자:
+        <input type="text" name="writer" readonly value="${board.writer }">
+    </label>
+    <label>등록일자:
+        <input type="text" name="createDate" readonly value="${board.createDate }">
+    </label>
+    <label>수정일자:
+        <input type="text" name="modifyDate" readonly value="${board.modifyDate }">
+    </label>
     <label>제목:
         <input type="text" name="title" value="${board.title }">
     </label>

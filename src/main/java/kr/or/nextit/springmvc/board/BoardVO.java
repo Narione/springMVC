@@ -10,8 +10,10 @@ public class BoardVO {
 	private String writer;
 	private String title;
 	private String content;
-//	private LocalDate createDate;
-//	private LocalDate modifyDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate createDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate modifyDate;
 	private int hits;
 
 //	public void setCreateDate(String createDate) {

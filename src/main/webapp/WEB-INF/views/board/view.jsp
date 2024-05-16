@@ -14,11 +14,11 @@
 <div>
     작성자: ${board.writer }
 </div>
-<%--<div>--%>
-<%--    등록일자: ${board.createDate}--%>
-<%--</div>--%>
-<%--<div>--%>
-<%--    수정일자: ${board.modifyDate}--%>
+<div>
+    등록일자: ${board.createDate}
+</div>
+<div>
+    수정일자: ${board.modifyDate}
 </div>
 <div>
     제목: ${board.title }

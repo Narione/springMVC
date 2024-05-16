@@ -62,4 +62,50 @@ public class BoardController {
         model.addAttribute("board", vo);
         return "board/view";
     }
+
+    @GetMapping("delete")
+    public String boardDelete(@RequestParam("no") int deleteNo, Model model){
+        int deleted = service.deleteBoard(deleteNo);
+        if (deleted > 0) {
+            return "redirect:/board/list";
+        } else {
+//            ??
+            model.addAttribute("msg", "삭제 실패");
+            return "redirect:/board/view";
+        }
+    }
+
+    @GetMapping("add")
+    public String boardAddView(Model model){
+        return "board/add";
+    }
+
+    @PostMapping("add")
+    public String boardAdd(BoardVO vo, Model model){
+        vo.setWriter("miso");
+
+//        // 모든 input 태그들은 multipart/form-data로 전송시 part에 담긴다.
+//        // 이 때 파일을 제외한 나머지는 request.getParameter()로 가져오는 게 편하고
+//        // 첨부파일만 getPart()를 통해 가져온다.
+//        Part part = request.getPart("uploadFile");
+//        // 업로드된 첨부파일의 파일 크기를 알고 싶으면
+//        long fileSize = part.getSize();
+//        // 업로드된 첨부파일의 이름을 알고 싶으면
+//        String fileName=part.getSubmittedFileName();
+//        System.out.println("file size: "+fileSize);
+//        System.out.println("file name: "+ fileName);
+//        //파일쓰기
+//        part.write("c:\\temp\\" + fileName);
+//        part.delete();
+
+        int inserted = service.insertBoard(vo);
+        if (inserted > 0) {
+            // 등록 성공
+            return "redirect:/board/list";
+        } else {
+            // 등록 실패
+            model.addAttribute("msg", "등록 실패");
+            return "board/add";
+        }
+    }
 }

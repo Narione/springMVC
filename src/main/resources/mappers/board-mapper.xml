@@ -86,6 +86,14 @@
 		where
 			no = #{no}
 	</update>
+	<update id="updateHits" parameterType="int">
+		UPDATE
+			BOARD
+		SET
+			HITS=HITS+1
+		WHERE
+			NO = #{no}
+	</update>
 	<delete id="deleteBoard" parameterType="int">
 		delete from
 			board

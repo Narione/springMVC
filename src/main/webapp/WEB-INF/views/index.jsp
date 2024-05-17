@@ -9,12 +9,13 @@
 인사말: ${greeting}
 <c:choose>
     <c:when test="${empty sessionScope.member}">
-        <p><a href="/login">로그인</a></p>
+        <p><a href="<c:url value="/login"/>">로그인</a></p>
     </c:when>
     <c:otherwise>
-        <p><a href="/logout">로그아웃</a></p>
+        <p><a href="<c:url value="/logout"/>">로그아웃</a></p>
     </c:otherwise>
 </c:choose>
-<p><a href="/register/step1">[회원가입으로 이동]</a></p>
+<p><a href="<c:url value="/register/step1"/>">[회원가입으로 이동]</a></p>
+<p><a href="<c:url value="/board/list"/>">게시판</a></p>
 </body>
 </html>

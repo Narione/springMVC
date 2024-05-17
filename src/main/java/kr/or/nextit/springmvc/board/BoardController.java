@@ -82,7 +82,7 @@ public class BoardController {
 
     @PostMapping("add")
     public String boardAdd(BoardVO vo, Model model){
-        vo.setWriter("miso");
+
 
 //        // 모든 input 태그들은 multipart/form-data로 전송시 part에 담긴다.
 //        // 이 때 파일을 제외한 나머지는 request.getParameter()로 가져오는 게 편하고

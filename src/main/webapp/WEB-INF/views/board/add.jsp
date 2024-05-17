@@ -10,6 +10,7 @@
 	<label>내용:
 		<textarea rows="10" cols="40" name="content"></textarea>
 	</label>
+	<input type="hidden" name="writer" value="${sessionScope.member.id}"
 <%--	<label>--%>
 <%--		<input type="file" name="uploadFile" multiple>--%>
 <%--	</label>--%>

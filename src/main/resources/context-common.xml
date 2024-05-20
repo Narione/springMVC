@@ -25,6 +25,6 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg ref="sqlSessionFactory" />
     </bean>
-    <!-- @Mapper 애노테이션이 붙은 모든 인터페이스를 빈으로 등록-->
+    <!-- base-package에 있는 모든 인터페이스를 빈으로 등록-->
     <mybatis-spring:scan base-package="kr.or.nextit.springmvc" />
 </beans>

@@ -23,10 +23,10 @@
             <mvc:mapping path="/board/add"/>
             <ref bean="authCheckInterceptor" />
         </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/board/update"/>
-            <mvc:mapping path="/board/delete"/>
-            <ref bean="writerCheckInterceptor" />
-        </mvc:interceptor>
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/board/update"/>-->
+<!--            <mvc:mapping path="/board/delete"/>-->
+<!--            <ref bean="writerCheckInterceptor" />-->
+<!--        </mvc:interceptor>-->
     </mvc:interceptors>
 </beans>

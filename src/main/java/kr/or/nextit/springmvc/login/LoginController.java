@@ -54,6 +54,11 @@ public class LoginController {
         if(member != null) {
         map.put("msg", location);
         session.setAttribute("member", member);
+        if(location != null && !"".equals(location)) {
+            map.put("msg", location);
+        }else {
+            map.put("msg", "/");
+        }
         }else{
             map.put("msg", "failure");
         }

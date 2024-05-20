@@ -16,6 +16,7 @@ public class BoardVO {
 	private LocalDate modifyDate;
 	private int hits;
 
+
 //	public void setCreateDate(String createDate) {
 //		this.createDate = LocalDate.parse(createDate);
 //	}

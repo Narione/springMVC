@@ -1,5 +1,6 @@
 package kr.or.nextit.springmvc.login;
 
+import kr.or.nextit.springmvc.exception.MemberNotFoundException;
 import kr.or.nextit.springmvc.member.Member;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Map;
 @Slf4j
 public class LoginController {
     private final LoginService service;
+
     @GetMapping("/login")
     public String loginView(String location, Model model) {
         model.addAttribute("location", location);
@@ -27,12 +29,19 @@ public class LoginController {
     @PostMapping("/login")
     public String login(LoginRequest login, HttpSession session, Model model) {
         Member member = service.findMember(login);
-        if(member != null) {
-            session.setAttribute("member", member);
-            return "redirect:/index";
+        if (member == null) {
+            throw new MemberNotFoundException();
         }
-        model.addAttribute("msg", "로그인 실패");
-        return "common/login";
+        session.setAttribute("member", member);
+        return "redirect:/";
+
+
+//        if(member != null) {
+//            session.setAttribute("member", member);
+//            return "redirect:/index";
+//        }
+//        model.addAttribute("msg", "로그인 실패");
+//        return "common/login";
     }
 
     @GetMapping("/logout")
@@ -51,17 +60,27 @@ public class LoginController {
         log.debug("location: {}", location);
         HashMap<String, String> map = new HashMap<>();
         Member member = service.findMember(login);
-        if(member != null) {
-        map.put("msg", location);
+        if (member == null) {
+            throw new MemberNotFoundException();
+        }
+
         session.setAttribute("member", member);
-        if(location != null && !"".equals(location)) {
+        if (location != null && !"".equals(location)) {
             map.put("msg", location);
-        }else {
+        } else {
             map.put("msg", "/");
         }
-        }else{
-            map.put("msg", "failure");
-        }
+
         return map;
     }
+
+    @ExceptionHandler(MemberNotFoundException.class)
+    @ResponseBody
+    public Map<String, String> memberNotFound(Model model) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("msg", "failure");
+        return map;
+    }
+
+
 }

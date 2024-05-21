@@ -13,7 +13,7 @@ public class BoardService {
 	public BoardService(BoardMapper mapper) {
 		this.mapper = mapper;
 	}
-	int getBoardListCount(SearchVO vo) {
+	public int getBoardListCount(SearchVO vo) {
 		return mapper.getBoardListCount(vo);
 	}
 	public List<BoardVO> getBoardList(SearchVO vo) {
